@@ -2,8 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProviderWorkspace.css";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+
 
 const API = "/api";
 
@@ -529,7 +528,7 @@ function ProviderWorkspace() {
 
   return (
     <>
-      <Navbar />
+     
 
       <div className="provider-workspace">
 
@@ -1658,7 +1657,7 @@ function ProviderWorkspace() {
 
       </div>
 
-      <Footer />
+     
     </>
   );
 }

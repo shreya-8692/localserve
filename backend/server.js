@@ -1,3 +1,6 @@
+require("dotenv").config();
+
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -50,6 +53,18 @@ app.use("/api", (req, res) => {
 });
 
 // =========================
+// FRONTEND (PRODUCTION BUILD)
+// =========================
+
+const frontendDist = path.join(__dirname, "..", "frontend", "dist");
+
+app.use(express.static(frontendDist));
+
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
+
+// =========================
 // GLOBAL ERROR HANDLER
 // =========================
 
@@ -67,7 +82,10 @@ app.use((err, req, res, next) => {
 // =========================
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/localserve")
+  .connect(
+    process.env.MONGODB_URI ||
+      "mongodb://127.0.0.1:27017/localserve"
+  )
   .then(() => {
     console.log("MongoDB connected successfully");
   })
@@ -79,7 +97,7 @@ mongoose
 // SERVER
 // =========================
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

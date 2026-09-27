@@ -1,5 +1,6 @@
 
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -12,7 +13,6 @@ import ProviderDetails from "./pages/ProviderDetails";
 import MyBookings from "./pages/MyBookings";
 import Profile from "./pages/Profile";
 import ProvidersMap from "./pages/ProvidersMap";
-import JoinProvider from "./pages/JoinProvider";
 import ProviderLogin from "./pages/ProviderLogin";
 import ProviderRegistration from "./pages/ProviderRegistration";
 import ProviderWorkspace from "./pages/ProviderWorkspace";
@@ -20,6 +20,12 @@ import CustomerTracking from "./pages/CustomerTracking";
 import Booking from "./pages/Booking";
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <Navbar />
@@ -87,7 +93,7 @@ function App() {
 
           <Route
             path="/join-provider"
-            element={<JoinProvider />}
+            element={<Navigate to="/provider-registration" replace />}
           />
 
           <Route

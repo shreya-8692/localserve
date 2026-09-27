@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const { hashPassword, verifyPassword } = require("../utils/password");
 
 const registerUser = async (req, res) => {
   try {
@@ -47,7 +48,7 @@ const registerUser = async (req, res) => {
       name,
       email: email.toLowerCase(),
       phone,
-      password,
+      password: await hashPassword(password),
       address: address || "",
       city: city || "",
     });
@@ -106,7 +107,7 @@ const loginUser = async (req, res) => {
       email: email.trim().toLowerCase(),
     });
 
-    if (!user || user.password !== password) {
+    if (!user || !(await verifyPassword(user, password))) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password.",

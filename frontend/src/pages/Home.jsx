@@ -130,7 +130,7 @@ function Home() {
               <span>→</span>
             </Link>
 
-            <Link to="/join-provider" className="secondary-btn">
+            <Link to="/provider-registration" className="secondary-btn">
               Become a Provider
             </Link>
           </div>
@@ -328,7 +328,7 @@ function Home() {
             for services in their local area.
           </p>
 
-          <Link to="/join-provider" className="cta-button">
+          <Link to="/provider-registration" className="cta-button">
             Join as a Provider →
           </Link>
         </div>

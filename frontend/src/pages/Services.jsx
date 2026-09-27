@@ -68,10 +68,10 @@ function Services() {
 
   const filteredProviders = selectedCategory
     ? providers.filter(
-        (provider) =>
-          provider.category?.toLowerCase() ===
-          selectedCategory.toLowerCase()
-      )
+      (provider) =>
+        provider.category?.toLowerCase() ===
+        selectedCategory.toLowerCase()
+    )
     : [];
 
   return (
@@ -121,11 +121,10 @@ function Services() {
 
             return (
               <div
-                className={`service-card ${
-                  selectedCategory === service.name
+                className={`service-card ${selectedCategory === service.name
                     ? "active"
                     : ""
-                }`}
+                  }`}
                 key={service.name}
                 style={{
                   animationDelay: `${index * 0.08}s`,
@@ -146,9 +145,8 @@ function Services() {
                   <span>
                     {loading
                       ? "Loading..."
-                      : `${count} provider${
-                          count !== 1 ? "s" : ""
-                        }`}
+                      : `${count} provider${count !== 1 ? "s" : ""
+                      }`}
                   </span>
 
                   <span className="arrow">→</span>

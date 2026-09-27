@@ -73,7 +73,7 @@ function Footer() {
             For Providers
           </h3>
 
-          <Link to="/join-provider">
+          <Link to="/provider-registration">
             Join LocalServe
           </Link>
 

@@ -1,4 +1,5 @@
 const ServiceProvider = require("../models/ServiceProvider");
+const { hashPassword, verifyPassword } = require("../utils/password");
 
 const registerProvider = async (req, res) => {
   try {
@@ -39,7 +40,7 @@ const registerProvider = async (req, res) => {
       name,
       email: email.toLowerCase(),
       phone,
-      password,
+      password: await hashPassword(password),
       category,
       experience,
       address,
@@ -91,7 +92,7 @@ const loginProvider = async (req, res) => {
       });
     }
 
-    if (provider.password !== password) {
+    if (!(await verifyPassword(provider, password))) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password",
